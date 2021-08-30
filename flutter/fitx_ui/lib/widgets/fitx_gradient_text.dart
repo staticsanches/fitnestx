@@ -9,7 +9,33 @@ class FitxGradientText extends StatelessWidget {
   final Gradient gradient;
   final TextAlign align;
 
-  const FitxGradientText(
+  const FitxGradientText.blue(
+    String text, {
+    Key? key,
+    required TextStyle style,
+    align = TextAlign.start,
+  }) : this._(
+          text,
+          key: key,
+          style: style,
+          align: align,
+          gradient: FitxGradients.blueLinear,
+        );
+
+  const FitxGradientText.purple(
+    String text, {
+    Key? key,
+    required TextStyle style,
+    align = TextAlign.start,
+  }) : this._(
+          text,
+          key: key,
+          style: style,
+          align: align,
+          gradient: FitxGradients.purpleLinear,
+        );
+
+  const FitxGradientText._(
     this.text, {
     Key? key,
     required this.style,
@@ -20,9 +46,7 @@ class FitxGradientText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ShaderMask(
-      shaderCallback: (bounds) => gradient.createShader(
-        Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-      ),
+      shaderCallback: (bounds) => gradient.createShader(bounds),
       child: FitxText(
         text,
         style: style,
